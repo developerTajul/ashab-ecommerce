@@ -73,7 +73,7 @@ if( isset($_POST['update_info']) ){
 	$name   = $_POST['update_name'];
 	$username  = $_POST['update_username'];
 	$email   = $_POST['update_email'];
-	$password   = $_POST['update_password'];
+	$password   = md5($_POST['update_password'] );
 
 	/** user thumbnail */
 	$file_name = $_FILES['update_thumbnail']['name'];
@@ -82,14 +82,13 @@ if( isset($_POST['update_info']) ){
 
 	if( $_FILES['update_thumbnail']['name'] != ''){
 		// with thumbnail image
-		$sql_update = "UPDATE users SET name = '$name', username='$username', email = '$email', password='password', thumbnail='$file_name' WHERE username = '$current_username'";
+		$sql_update = "UPDATE users SET name = '$name', username='$username', email = '$email', password='$password', thumbnail='$file_name' WHERE username = '$current_username'";
 		mysqli_query($con, $sql_update);
 	}else{
 		// without thumbnail
-		$sql_update = "UPDATE users SET name = '$name', username='$username', email = '$email', password='password' WHERE username = '$current_username'";
+		$sql_update = "UPDATE users SET name = '$name', username='$username', email = '$email', password='$password' WHERE username = '$current_username'";
+		mysqli_query($con, $sql_update);
 	}
-
-
 
 	header("Location: users.php");
 }

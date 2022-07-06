@@ -27,10 +27,10 @@
         <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="users">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
-            <li class="nav-item"><a class="nav-link" href="add_new_user.php">Add User</a></li>
-        </ul>
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="users.php">Users</a></li>
+                <li class="nav-item"><a class="nav-link" href="add_new_user.php">Add User</a></li>
+            </ul>
         </div>
     </li>
 
@@ -66,16 +66,10 @@
         <div class="collapse" id="categories">
         <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-            <a class="nav-link" href="categories.php">Categories</a>
+                <a class="nav-link" href="categories.php">Categories</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="add_category.php">Add Category</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="edit_category.php">Edit Category</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                <a class="nav-link" href="add_category.php">Add Category</a>
             </li>
         </ul>
         </div>
