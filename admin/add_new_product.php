@@ -10,22 +10,19 @@
                 <?php 
                 $product_errors = [];
                 if( isset( $_POST['product_add']) ){
-                    $product_name               = $_POST['name'];
+                    $product_name               = mysqli_real_escape_string($con, $_POST['name']);
                     $product_sale_price         = (float)$_POST['sale_price'];
                     $product_regular_price      = (float)$_POST['regular_price'];
                     $product_quantity           = (int)$_POST['qty'];
                     $product_category_id        = (int)$_POST['category_id'];
-                    $product_shot_desc          = $_POST['shot_desc'];
-                    $product_long_desc          = $_POST['long_desc'];
-                    $product_meta_title         = $_POST['meta_title'];
-                    $product_meta_keywords      = $_POST['meta_keywords'];
-                    $product_meta_description   = $_POST['meta_description'];
+                    $product_shot_desc          = mysqli_real_escape_string($con, $_POST['shot_desc']);
+                    $product_long_desc          = mysqli_real_escape_string($con, $_POST['long_desc']);
+                    $product_meta_title         = mysqli_real_escape_string($con, $_POST['meta_title']);
+                    $product_meta_keywords      = mysqli_real_escape_string($con, $_POST['meta_keywords']);
+                    $product_meta_description   = mysqli_real_escape_string($con, $_POST['meta_description']);
                     
-
-                    $product_slug = strtolower(implode('-', explode(" ", $product_name)));
+                    $product_slug = mysqli_real_escape_string($con, strtolower(implode('-', explode(" ", $product_name))));
                     
-
-
                     if( empty( $product_name ) ){
                         $product_errors['name'] = "Product Name should not be blank";
                     }
