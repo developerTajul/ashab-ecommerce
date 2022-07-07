@@ -49,9 +49,6 @@
             <li class="nav-item">
             <a class="nav-link" href="edit_product.php">Edit Product</a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/typography.html">Category</a>
-            </li>
         </ul>
         </div>
     </li>
