@@ -32,7 +32,7 @@
 							<td><?php echo $user['name']; ?></td>
 							<td><?php echo $user['username']; ?></td>
 							<td><?php echo $user['email']; ?></td>
-							<td><img src="../uploads/<?php echo $user['thumbnail']; ?>" alt="Author Name"></td>
+							<td><img src="../uploads/users/<?php echo $user['thumbnail']; ?>" alt="Author Name"></td>
 							<td>
 								<?php
 								if( $user['status'] == 0 ): ?>

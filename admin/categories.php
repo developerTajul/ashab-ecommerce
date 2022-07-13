@@ -32,7 +32,7 @@
 							<td><?php echo $cat['cat_name']; ?></td>
 							<td><?php echo $cat['cat_slug']; ?></td>
 							<td><?php echo $cat['cat_desc']; ?></td>
-							<td><img src="../uploads/<?php echo $cat['cat_thumbnail']; ?>" alt="Author Name"></td>
+							<td><img src="../uploads/categories/<?php echo $cat['cat_thumbnail']; ?>" alt="Author Name"></td>
 							<td>
 								<?php
 								if( $cat['cat_status'] == 0 ): ?>
