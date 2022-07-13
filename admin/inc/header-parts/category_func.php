@@ -77,6 +77,10 @@ if( isset( $_POST['update_category_info'] ) ){
 	header("location: categories.php");
 }
 
+
+/**
+ * Delete Category
+ */
 if( isset( $_GET['cat_delete'] ) ){
   $current_deleted_id = $_GET['cat_delete'];
   $sql = "DELETE FROM categories WHERE cat_slug='$current_deleted_id'";
@@ -85,6 +89,10 @@ if( isset( $_GET['cat_delete'] ) ){
   header("Location: categories.php");
 }
 
+
+/**
+ * Active Status
+ */
 if( isset( $_GET['cat_status'] ) ){
 
   // if( $_GET['user_status'] == 'active'){

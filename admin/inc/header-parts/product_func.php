@@ -120,14 +120,26 @@ if( isset( $_POST['update_product_info']) ){
         $product_update_query = "UPDATE product SET name = '$update_product_name', sale_price='$update_product_sale_price', regular_price = '$update_product_regular_price', qty='$update_product_quantity', short_desc='$update_product_shot_desc', long_desc='$update_product_long_desc', category_id=$update_product_category_id, meta_title='$update_product_meta_title', meta_desc='$update_product_meta_description', meta_keywords='$update_product_meta_keywords'  WHERE product_id = '$current_product_id'";  
     }
 
-
-
-
-
-
-
    
     mysqli_query( $con, $product_update_query );
+
+    header("location: products.php");
+
+}
+
+
+
+/**
+ * Product Status Change
+ */
+if( isset($_GET['product_status']) ){
+    $cat_status_id = $_GET['id'];
+    if($_GET['product_status'] == 'active'){
+        $status = 0;
+    }else{
+        $status = 1;
+    }
+    mysqli_query($con, "UPDATE product SET status='$status' WHERE product_id='$cat_status_id'");
 
     header("location: products.php");
 
