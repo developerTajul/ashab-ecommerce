@@ -44,6 +44,15 @@ if( isset( $_GET['user_status'] ) ){
   header("Location: users.php");
 }
 
+/**
+ * Fetch User Data
+ */
+if( isset( $_GET['username'] ) ){
+  $current_username = $_GET['username'];
+  $sql = "SELECT * FROM users WHERE username='$current_username'";
+  $user_rows = mysqli_query($con, $sql);
+  $user_single_row = mysqli_fetch_assoc( $user_rows  );
+}
 
 /**
  * Update User info
@@ -56,18 +65,22 @@ if( isset($_POST['update_info']) ){
 	$email   = $_POST['update_email'];
 	$password   = md5($_POST['update_password'] );
 
-	/** user thumbnail */
-	$file_name = $_FILES['update_thumbnail']['name'];
-	$tmp_name = $_FILES['update_thumbnail']['tmp_name'];
-	move_uploaded_file($tmp_name, '../uploads/'.$file_name);
+
 
 	if( $_FILES['update_thumbnail']['name'] != ''){
+    /** user thumbnail */
+    $file_name = $_FILES['update_thumbnail']['name'];
+    $tmp_name = $_FILES['update_thumbnail']['tmp_name'];
+    move_uploaded_file($tmp_name, '../uploads/users/'.$file_name);
+
+    unlink('../uploads/users/'.$user_single_row['thumbnail']);
+
 		// with thumbnail image
-		$sql_update = "UPDATE users SET name = '$name', username='$username', email = '$email', password='$password', thumbnail='$file_name' WHERE username = '$current_username'";
+		$sql_update = "UPDATE users SET name = '$name', username='$username', email = '$email',  thumbnail='$file_name' WHERE username = '$current_username'";
 		mysqli_query($con, $sql_update);
 	}else{
 		// without thumbnail
-		$sql_update = "UPDATE users SET name = '$name', username='$username', email = '$email', password='$password' WHERE username = '$current_username'";
+		$sql_update = "UPDATE users SET name = '$name', username='$username', email = '$email' WHERE username = '$current_username'";
 		mysqli_query($con, $sql_update);
 	}
 
