@@ -42,17 +42,14 @@
         <i class="menu-arrow"></i>
         </a>
         <div class="collapse" id="products">
-        <ul class="nav flex-column sub-menu">
-            <li class="nav-item">
-                <a class="nav-link" href="products.php">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="add_new_product.php">Add Product</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="edit_product.php">Edit Product</a>
-            </li>
-        </ul>
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="products.php">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add_new_product.php">Add Product</a>
+                </li>
+            </ul>
         </div>
     </li>
 
