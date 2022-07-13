@@ -7,50 +7,7 @@
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <?php 
-                $product_errors = [];
-                if( isset( $_POST['product_add']) ){
-                    $product_name               = mysqli_real_escape_string($con, $_POST['name']);
-                    $product_sale_price         = (float)$_POST['sale_price'];
-                    $product_regular_price      = (float)$_POST['regular_price'];
-                    $product_quantity           = (int)$_POST['qty'];
-                    $product_category_id        = (int)$_POST['category_id'];
-                    $product_shot_desc          = mysqli_real_escape_string($con, $_POST['shot_desc']);
-                    $product_long_desc          = mysqli_real_escape_string($con, $_POST['long_desc']);
-                    $product_meta_title         = mysqli_real_escape_string($con, $_POST['meta_title']);
-                    $product_meta_keywords      = mysqli_real_escape_string($con, $_POST['meta_keywords']);
-                    $product_meta_description   = mysqli_real_escape_string($con, $_POST['meta_description']);
-                    
-                    $product_slug = mysqli_real_escape_string($con, strtolower(implode('-', explode(" ", $product_name))));
-                    
-                    if( empty( $product_name ) ){
-                        $product_errors['name'] = "Product Name should not be blank";
-                    }
-
-                    if( empty( $product_sale_price ) ){
-                        $product_errors['sale_price'] = "Sale Price should not be blank";
-                    }
-
-                    if( empty( $product_regular_price ) ){
-                        $product_errors['regular_price'] = "Product Name should not be blank";
-                    }
-
-                    if( empty( $product_quantity ) ){
-                        $product_errors['quantity'] = "Product Quantity should not be blank";
-                    }
-
-                    $cat_errors = count( $product_errors );
-
-                    if( $cat_errors <= 0 ){
-                        $product_insert_query = "INSERT INTO product(name, slug, sale_price, regular_price, qty, short_desc, long_desc, category_id, meta_title, meta_desc, meta_keywords) VALUES('$product_name', '$product_slug', $product_sale_price, $product_regular_price, $product_quantity, '$product_shot_desc', '$product_long_desc', $product_category_id,  '$product_meta_title', '$product_meta_description', '$product_meta_keywords')";
-
-
-                        mysqli_query( $con, $product_insert_query );
-
-                    }
-
-                }
-                
+                <?php                 
                 // category
                 $cats_q = mysqli_query($con, "SELECT * FROM categories");
                 $cats = mysqli_fetch_all( $cats_q, MYSQLI_ASSOC );
@@ -140,7 +97,7 @@
                     <!-- Thumbnail -->
                     <div class="form-group">
                         <label>File upload</label> <br />
-                        <input  type="file" name="cat_thumbnail" />              
+                        <input  type="file" name="thumbnail" />              
                     </div>
 
                     <!-- cat_name -->

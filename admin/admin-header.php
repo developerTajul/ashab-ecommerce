@@ -19,8 +19,9 @@ if( !is_user_logged_in() ){
 /***
  * Category
  */
-require_once('inc/parts/category.php');
-require_once('inc/parts/user.php');
+require_once('inc/header-parts/category_func.php');
+require_once('inc/header-parts/user_func.php');
+require_once('inc/header-parts/product_func.php');
 
 ?>
 <!DOCTYPE html>
