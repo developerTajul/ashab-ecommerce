@@ -34,7 +34,7 @@
 							<td><?php echo $product['sale_price']; ?></td>
 							<td><?php echo $product['regular_price']; ?></td>
 							<td><?php echo $product['qty']; ?></td>
-							<td><img src="../uploads/<?php echo $product['thumbnail']; ?>" alt="Product Name"></td>
+							<td><img src="../uploads/products/<?php echo $product['thumbnail']; ?>" alt="Product Name"></td>
 							<td>
 								<?php
 								if( $product['status'] == 0 ): ?>

@@ -7,16 +7,6 @@
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <?php 
-                if( isset( $_GET['product_id'] ) ){
-                    $current_product_id = $_GET['product_id'];
-                    $sql = "SELECT * FROM product WHERE product_id='$current_product_id'";
-                    $rows = mysqli_query($con, $sql);
-                    $single_row = mysqli_fetch_assoc( $rows  );
-                }
-
-                
-                ?>
                 <h4 class="card-title">Edit Category</h4>
                 <p class="card-description"> Update Category Info </p>
                 <form class="forms-sample" action="" method="POST" enctype="multipart/form-data">
@@ -62,10 +52,19 @@
                         <label for="long_desc">Category</label>
                         <select class="form-control" name="update_category_id">
                             <option>Select Category</option>
-                            <?php 
+                            <?php                          
+                            // category
+                            $cats_q = mysqli_query($con, "SELECT * FROM categories");
+                            $cats = mysqli_fetch_all( $cats_q, MYSQLI_ASSOC );
+                                            
                             foreach( $cats as $cat ):?>
 
-                                <option value="<?php echo $cat['cat_id']; ?>"><?php echo $cat['cat_name']; ?></option>
+                                <option value="<?php echo $cat['cat_id']; ?>" 
+                                <?php 
+                                if( $cat['cat_id'] == $single_row['category_id']) 
+                                echo "Selected";
+                                ?>
+                                ><?php echo $cat['cat_name']; ?></option>
                             <?php 
                             endforeach; ?>
                         </select>
