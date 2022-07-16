@@ -100,7 +100,7 @@ require_once('header.php'); ?>
                 <div class="row">
                     <?php 
                     if( isset( $_GET['cat_id'] ) ):
-                    $current_category_id = $_GET['cat_id']; 
+                    $current_category_id = mysqli_real_escape_string($con, $_GET['cat_id']); 
                     $cat_products = get_products($con, 'DESC', '8', $current_category_id);
                     $product_number = count($cat_products);
                         if( $product_number > 0 ):
