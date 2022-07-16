@@ -43,9 +43,9 @@ if( isset( $_POST['add_categry'] )){
 /**
  * Fetch Category Data
  */
-if( isset( $_GET['cat_slug'] ) ){
-  $current_cat_slug = $_GET['cat_slug'];
-  $sql = "SELECT * FROM categories WHERE cat_slug='$current_cat_slug'";
+if( isset( $_GET['cat_id'] ) ){
+  $current_cat_id = $_GET['cat_id'];
+  $sql = "SELECT * FROM categories WHERE cat_id='$current_cat_id'";
   $cat_rows = mysqli_query($con, $sql);
   $cat_single_row = mysqli_fetch_assoc( $cat_rows  );
 }
@@ -54,7 +54,7 @@ if( isset( $_GET['cat_slug'] ) ){
 // update category info
 if( isset( $_POST['update_category_info'] ) ){
 
-	$current_cat_slug = $_GET['cat_slug'];
+	$current_cat_id = $_GET['cat_id'];
 
 	$cat_name = $_POST['update_cat_name'];
 	$cat_slug = $_POST['update_cat_slug'];
@@ -66,10 +66,10 @@ if( isset( $_POST['update_category_info'] ) ){
 	move_uploaded_file($file_tmp_name, '../uploads/categories/'.$cat_file_name);
 
   if( $cat_file_name != "" ){
-    $sql_update = "UPDATE categories SET cat_name = '$cat_name', cat_desc='$cat_desc', cat_thumbnail='$cat_file_name' WHERE cat_slug = '$current_cat_slug'";
+    $sql_update = "UPDATE categories SET cat_name = '$cat_name', cat_slug = '$cat_slug', cat_desc='$cat_desc', cat_thumbnail='$cat_file_name' WHERE cat_id = '$current_cat_id'";
     unlink('../uploads/categories/'.$cat_single_row['cat_thumbnail']);
   }else{
-    $sql_update = "UPDATE categories SET cat_name = '$cat_name', cat_desc='$cat_desc' WHERE cat_slug = '$current_cat_slug'";
+    $sql_update = "UPDATE categories SET cat_name = '$cat_name', cat_slug = '$cat_slug', cat_desc='$cat_desc' WHERE cat_id = '$current_cat_id'";
   }
 
 	mysqli_query($con, $sql_update);

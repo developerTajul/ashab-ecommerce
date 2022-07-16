@@ -43,7 +43,7 @@
 								<?php 
 								endif; ?>
 							</td>
-							<td><a href="category_edit.php?cat_slug=<?php echo $cat['cat_slug']; ?>">Edit</a> | <a href="?cat_delete=<?php echo $cat['cat_slug']; ?>">Delete</a></td>
+							<td><a href="category_edit.php?cat_id=<?php echo $cat['cat_id']; ?>">Edit</a> | <a href="?cat_delete=<?php echo $cat['cat_id']; ?>">Delete</a></td>
 						</tr>
 					<?php 
 					$number++;
