@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once('admin/inc/config.php');
 require_once('functions.php'); 
 require_once('inc/template-helper.php'); 
@@ -48,13 +49,13 @@ require_once('inc/template-helper.php');
                     <div class="row">
                         <div class="col-lg-2 col-sm-3 col-5">
                             <div class="logo">
-                                <a href="index.html"><img src="images/logo/4.png" alt="logo images"></a>
+                                <a href="index.php"><img src="images/logo/4.png" alt="logo images"></a>
                             </div>
                         </div>
                         <div class="col-xl-8 col-lg-7 d-none d-lg-block">
                             <nav class="main__menu__nav">
                                 <ul class="main__menu">
-                                    <li class="drop"><a href="index.html">Home</a></li>
+                                    <li class="drop"><a href="index.php">Home</a></li>
                                     <?php
                                     if( is_array( $cats ) ):
                                         foreach($cats as $cat): ?>
@@ -62,14 +63,22 @@ require_once('inc/template-helper.php');
                                         <?php 
                                         endforeach;
                                     endif; ?>
-                                    <li><a href="contact.html">contact</a></li>
+                                    <li><a href="contact.php">contact</a></li>
+                                    <?php 
+                                    if( isset( $_SESSION['name'] ) ): ?>
+                                    <li><a href="logout.php">Logout</a></li>
+                                    <?php 
+                                    else: ?>
+                                    <li><a href="login.php">Login</a></li>
+                                    <?php 
+                                    endif; ?>
                                 </ul>
                             </nav>
 
                             <div class="mobile-menu d-block d-lg-none">
                                 <nav id="mobile_dropdown">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="index.php">Home</a></li>
                                         <?php
                                         if( is_array( $cats ) ):
                                             foreach($cats as $cat): ?>
@@ -77,8 +86,8 @@ require_once('inc/template-helper.php');
                                             <?php 
                                             endforeach;
                                         endif; ?>
-                                        <li><a href="blog.html">blog</a></li>
-                                        <li><a href="contact.html">contact</a></li>
+                                        <li><a href="contact.php">contact</a></li>
+                                        <li><a href="login.php">Login</a></li>
                                     </ul>
                                 </nav>
                             </div>

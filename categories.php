@@ -101,7 +101,7 @@ require_once('header.php'); ?>
                     <?php 
                     if( isset( $_GET['cat_id'] ) ):
                     $current_category_id = mysqli_real_escape_string($con, $_GET['cat_id']); 
-                    $cat_products = get_products($con, 'DESC', '8', $current_category_id);
+                    $cat_products = get_products($con, 'DESC', '8', '', $current_category_id);
                     $product_number = count($cat_products);
                         if( $product_number > 0 ):
                         ?>
@@ -142,7 +142,7 @@ require_once('header.php'); ?>
                                                 <div class="col-lg-3 col-md-4">
                                                     <div class="category">
                                                         <div class="ht__cat__thumb">
-                                                            <a href="product-details.html">
+                                                            <a href="product.php?product_id=<?php echo $product['product_id']; ?>">
                                                                 <img src="uploads/products/<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['name']; ?>">
                                                             </a>
                                                         </div>
@@ -156,7 +156,7 @@ require_once('header.php'); ?>
                                                             </ul>
                                                         </div>
                                                         <div class="fr__product__inner">
-                                                            <h4><a href="product-details.html"><?php echo $product['name']; ?></a></h4>
+                                                            <h4><a href="product.php?product_id=<?php echo $product['product_id']; ?>"><?php echo $product['name']; ?></a></h4>
                                                             <ul class="fr__pro__prize">
                                                                 <li class="old__prize"><?php echo $product['sale_price']; ?></li>
                                                                 <li>$<?php echo $product['regular_price']; ?></li>

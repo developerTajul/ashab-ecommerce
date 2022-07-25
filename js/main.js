@@ -432,5 +432,131 @@
 })(jQuery);
 
 
+/**
+ * Contact Page
+ */
+function send_message(){
+    let name = jQuery('input[ name="name"]').val();
+    let email = jQuery('input[ name="email"]').val();
+    let subject = jQuery('input[ name="subject"]').val();
+    let message = jQuery('textarea[ name="message"]').val();
+
+    let errors = [];
+    if( name == ""){
+        errors['name'] = "Please Enter Your Name";
+        alert(errors['name']);
+    }else if(email == ""){
+        errors['email'] = "Please Enter Email Address";
+        alert(errors['email']);
+    }else if(subject == ""){
+        errors['subject'] = "Please Enter Subject";
+        alert(errors['subject']);
+    }else if(message == ""){
+        errors['message'] = "Please Enter Message";
+        alert(errors['message']);
+    }else{
+        jQuery.ajax({
+            type: 'POST',
+            url: 'send_message.php',
+            // data : 'name='+name+'&email='+email+'&subject='+subject+'&message='+message,
+            data: {
+                name,
+                email,
+                subject,
+                message
+            },
+            success: function(e){
+                console.log(e);
+
+                jQuery('input[ name="name"]').val("");
+                jQuery('input[ name="email"]').val("");
+                jQuery('input[ name="subject"]').val("");
+                jQuery('textarea[ name="message"]').val("");
+            }
+        });
+    }
+}
 
 
+/**
+ * Customer Register
+ */
+function customer_register(){
+    const name = jQuery('input[name="fullname"]').val();
+    const email = jQuery('input[name="email"]').val();
+    const mobile = jQuery('input[name="mobile"]').val();
+    const password = jQuery('input[name="password"]').val();
+
+    const errors = [];
+
+    if( name === '' ){
+        errors['name'] = "Enter Your Name";
+        alert(errors['name']);
+    }else if( email === ''){
+        errors['email'] = "Enter Email Address";
+        alert(errors['email']);
+    }else if(mobile === ''){
+        errors['mobile'] = "Enter Mobile Number";
+        alert(errors['mobile']);
+    }else if(password === ''){
+        errors['password'] = "Enter Password Here";
+        alert(errors['password']);
+    }else{
+        jQuery.ajax({
+            'type'  : 'POST',
+            'url'   : 'customer_register_info.php',
+            'data'  : {
+                'name'      : name,
+                'email'     : email,
+                'mobile'    : mobile,
+                'password'  : password
+            },
+            'success'   : function(e){
+                $('.form-messege.register-success').html(e);
+                jQuery('input[name="fullname"]').val("");
+                jQuery('input[name="email"]').val("");
+                jQuery('input[name="mobile"]').val("");
+                jQuery('input[name="password"]').val("");
+            }
+        });
+    }
+
+}
+
+
+/**
+ * Customer Login
+ */
+function user_login(){
+   
+
+    const loginEmail = jQuery('input[name="loginEmail"]').val();
+    const loginPassword = jQuery('input[name="loginPassword"]').val();
+
+    const errors = [];
+
+    if( loginEmail === ''){
+        errors['loginEmail'] = "Enter Email Address";
+        alert(errors['loginEmail']);
+    }else if(loginPassword === ''){
+        errors['loginPassword'] = "Enter Password Here";
+        alert(errors['loginPassword']);
+    }else{
+        jQuery.ajax({
+            'type'  : 'POST',
+            'url'   : 'customer_login_info.php',
+            'data'  : {
+                'email'     : loginEmail,
+                'password'  : loginPassword
+            },
+            'success'   : function(e){
+                if( 'login_success' == e ){
+                    window.location.href='index.php';
+                }else{
+                    $('.form-messege.login-success').html("Please enter correct information");
+                }
+            }
+        });
+    }
+ 
+}    

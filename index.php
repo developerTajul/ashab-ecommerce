@@ -146,12 +146,12 @@ require_once('header.php');
                 <div class="row product-list_area mt--30">
                     <!-- Start Single Category -->
                     <?php 
-                    $latest_products = get_products($con, 'DESC', '12', '30');
+                    $latest_products = get_products($con, 'DESC', '8');
                     foreach( $latest_products as $product ): ?>
                     <div class="col-xl-3 col-md-4">
                         <div class="category">
                             <div class="ht__cat__thumb">
-                                <a href="product-details.html">
+                                <a href="product.php?product_id=<?php echo $product['product_id']; ?>">
                                     <img src="uploads/products/<?php echo $product['thumbnail']; ?>" alt="<?php echo $product['name']; ?>">
                                 </a>
                             </div>
@@ -165,7 +165,7 @@ require_once('header.php');
                                 </ul>
                             </div>
                             <div class="fr__product__inner">
-                                <h4><a href="product-details.html"><?php echo $product['name']; ?></a></h4>
+                                <h4><a href="product.php?product_id=<?php echo $product['product_id']; ?>"><?php echo $product['name']; ?></a></h4>
                                 <ul class="fr__pro__prize">
                                     <li class="old__prize">$<?php echo $product['regular_price']; ?></li>
                                     <li>$<?php echo $product['sale_price']; ?></li>

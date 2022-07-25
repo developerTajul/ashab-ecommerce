@@ -18,10 +18,10 @@ if( isset( $_POST['login_process'] )){
 
    	if( mysqli_num_rows($login_data) >= 1 ){
 
-		$data = mysqli_fetch_assoc($login_data);
-		$_SESSION['name'] = $data['name'];
-		$_SESSION['username'] = $data['username'];
-		$_SESSION['email'] = $data['email'];
+      $data = mysqli_fetch_assoc($login_data);
+      $_SESSION['name'] = $data['name'];
+      $_SESSION['username'] = $data['username'];
+      $_SESSION['email'] = $data['email'];
 
       	header("Location: index.php");
    	}
