@@ -560,3 +560,33 @@ function user_login(){
     }
  
 }    
+
+
+/**
+ * Manage Cart
+ */
+function manage_cart(pid, type){
+    if( type === 'update' ){
+        var qty = jQuery('#'+pid+'qty').val();
+    }else{
+        var qty = jQuery('#qty').val();
+    }
+   
+
+    jQuery.ajax({
+        'type'  : 'POST',
+        'url'   : 'manage_cart.php',
+        'data'  : {
+            'pid'       : pid,
+            'qty'       : qty,
+            'type'      : type
+        },
+        'success'   : function(e){
+            if( type == 'remove' || type == 'update' ){
+                window.location.href='cart.php';
+            }
+            jQuery('.htc__qua').html(e);
+        }
+    });
+ 
+}    

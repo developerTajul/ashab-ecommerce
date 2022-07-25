@@ -11,7 +11,7 @@ class Add_To_Cart{
         }
     }
 
-    public function removeProduct(){
+    public function removeProduct($pid){
         if( isset( $_SESSION['cart'][$pid] ) ){
             unset( $_SESSION['cart'][$pid] );
         }
@@ -20,4 +20,14 @@ class Add_To_Cart{
     public function emptyProduct(){
         unset( $_SESSION['cart'] );
     }
+
+    public function totalProduct(){
+        if( isset( $_SESSION['cart'] ) ){
+            return count( $_SESSION['cart'] );
+        }else{
+            return 0;
+        }
+    }
+
+    
 }

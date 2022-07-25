@@ -3,6 +3,11 @@ session_start();
 require_once('admin/inc/config.php');
 require_once('functions.php'); 
 require_once('inc/template-helper.php'); 
+require_once('add_to_cart.php');
+
+$obj = new Add_To_Cart();
+$totalProducts = $obj->totalProduct();
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -102,7 +107,7 @@ require_once('inc/template-helper.php');
                                 </div>
                                 <div class="htc__shopping__cart">
                                     <a class="cart__menu" href="#"><i class="icon-handbag icons"></i></a>
-                                    <a href="#"><span class="htc__qua">2</span></a>
+                                    <a href="cart.php"><span class="htc__qua"><?php echo $totalProducts; ?></span></a>
                                 </div>
                             </div>
                         </div>

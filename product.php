@@ -66,8 +66,8 @@ require_once('header.php'); ?>
                         <li class="total__price">$130.00</li>
                     </ul>
                     <ul class="shopping__btn">
-                        <li><a href="cart.html">View Cart</a></li>
-                        <li class="shp__checkout"><a href="checkout.html">Checkout</a></li>
+                        <li><a href="cart.php">View Cart</a></li>
+                        <li class="shp__checkout"><a href="checkout.php">Checkout</a></li>
                     </ul>
                 </div>
             </div>
@@ -82,8 +82,7 @@ $product_number = count($single_product);
     if( $product_number > 0 ):
         
         if( is_array( $single_product ) ):
-            foreach( $single_product as $product ): ?>
-    ?>        
+            foreach( $single_product as $product ): ?>        
         <!-- Start Bradcaump area -->
         <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/4.jpg) no-repeat scroll center center / cover ;">
             <div class="ht__bradcaump__wrap">
@@ -189,7 +188,7 @@ $product_number = count($single_product);
 
 
                                     <div class="sin__desc align--left add_to_cart">
-                                        <a class="fr__btn" href="javascript:void(0)">Add To Cart</a> 
+                                        <a class="fr__btn" href="javascript:void(0)" onClick="manage_cart('<?php echo $product['product_id']; ?>', 'add')">Add To Cart</a> 
                                     </div>
 
 
