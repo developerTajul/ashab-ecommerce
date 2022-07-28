@@ -14,8 +14,9 @@ $login_data = mysqli_query($con, "SELECT * FROM customers WHERE email='$email' &
 if( mysqli_num_rows($login_data) >= 1 ){
 
     $data = mysqli_fetch_assoc($login_data);
-    $_SESSION['name'] = $data['name'];
-    $_SESSION['email'] = $data['email'];
+    $_SESSION['name']       = $data['name'];
+    $_SESSION['email']      = $data['email'];
+    $_SESSION['user_id']    = $data['id'];
     echo "login_success";
 }else{
     echo "login_fail";

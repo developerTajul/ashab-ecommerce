@@ -563,6 +563,44 @@ function user_login(){
 
 
 /**
+ * Customer Login from checkout page
+ */
+function userLoginFromCheckout(){
+   
+
+    const email = jQuery('input[name="loginEmail"]').val();
+    const password = jQuery('input[name="loginPassword"]').val();
+    console.log(email, password);
+    const errors = [];
+
+    if( email === ''){
+        errors['email'] = "Enter Email Address hdkfjdkljf";
+        alert(errors['email']);
+    }else if(password === ''){
+        errors['password'] = "Enter Password Here";
+        alert(errors['password']);
+    }else{
+        jQuery.ajax({
+            'type'  : 'POST',
+            'url'   : 'customer_login_info.php',
+            'data'  : {
+                'email'     : email,
+                'password'  : password
+            },
+            'success'   : function(e){
+                if( 'login_success' == e ){
+                    window.location.href=window.location.href;
+                }else{
+                    $('.form-messege.login-success').html("Please enter correct information");
+                }
+            }
+        });
+    }
+ 
+}    
+
+
+/**
  * Manage Cart
  */
 function manage_cart(pid, type){
@@ -583,7 +621,7 @@ function manage_cart(pid, type){
         },
         'success'   : function(e){
             if( type == 'remove' || type == 'update' ){
-                window.location.href='cart.php';
+                window.location.href=window.location.href;
             }
             jQuery('.htc__qua').html(e);
         }

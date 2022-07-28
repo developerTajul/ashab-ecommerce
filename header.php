@@ -118,3 +118,79 @@ $totalProducts = $obj->totalProduct();
             <!-- End Mainmenu Area -->
         </header>
         <!-- End Header Area -->
+        <div class="body__overlay"></div>
+        <!-- Start Offset Wrapper -->
+        <div class="offset__wrapper">
+            <!-- Start Search Popap -->
+            <div class="search__area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="search__inner">
+                                <form action="#" method="get">
+                                    <input placeholder="Search here... " type="text">
+                                    <button type="submit"></button>
+                                </form>
+                                <div class="search__close__btn">
+                                    <span class="search__close__btn_icon"><i class="zmdi zmdi-close"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Search Popap -->
+            <!-- Start Cart Panel -->
+            <div class="shopping__cart">
+                <div class="shopping__cart__inner">
+                    <div class="offsetmenu__close__btn">
+                        <a href="#"><i class="zmdi zmdi-close"></i></a>
+                    </div>
+                    <div class="shp__cart__wrap">
+                    <?php 
+                        $cart_total = 0;
+                        if( isset($_SESSION['cart']) ):
+                            foreach( $_SESSION['cart'] as $key => $value ): 
+                                $productArray = get_products($con, '', '', $key);
+                                $product_id = $productArray[0]['product_id'];
+                                $name = $productArray[0]['name'];
+                                $thumbnail = $productArray[0]['thumbnail'];
+                                $regular_price = $productArray[0]['regular_price'];
+                                $sale_price = $productArray[0]['sale_price'];
+                                $qty = $value['qty'];
+                                $cart_total = $cart_total + ($qty*$sale_price);
+                                
+                            ?>
+                            <div class="shp__single__product">
+                                <div class="shp__pro__thumb">
+                                    <a href="#">
+                                    <img src="uploads/products/<?php echo $thumbnail; ?>" alt="<?php echo $name; ?>">
+                                    </a>
+                                </div>
+                                <div class="shp__pro__details">
+                                    <h2><a href="product-details.html"><?php echo $name; ?></a></h2>
+                                    <span class="quantity">QTY: <?php echo $qty; ?></span>
+                                    <span class="shp__price">$<?php echo $qty*$sale_price; ?></span>
+                                </div>
+                                <div class="remove__btn">
+                                    <a href="javascript:void()" onclick="manage_cart('<?php echo $product_id; ?>', 'remove')" title="Remove this item"><i class="zmdi zmdi-close"></i></a>
+                                </div>
+                            </div>
+                            <?php 
+                            endforeach; 
+                        endif;
+                        ?>
+                    </div>
+                    <ul class="shoping__total">
+                        <li class="subtotal">Subtotal:</li>
+                        <li class="total__price">$<?php echo $cart_total; ?></li>
+                    </ul>
+                    <ul class="shopping__btn">
+                        <li><a href="cart.php">View Cart</a></li>
+                        <li class="shp__checkout"><a href="checkout.php">Checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End Cart Panel -->
+        </div>
+        <!-- End Offset Wrapper -->
