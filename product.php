@@ -4,7 +4,7 @@ require_once('header.php'); ?>
 <?php 
 if( isset( $_GET['product_id'] ) ):
 $current_product_id = mysqli_real_escape_string($con, $_GET['product_id']); 
-$single_product = get_products($con, 'DESC', '8', $current_product_id,);
+$single_product = get_products($con, '', '8', $current_product_id);
 $product_number = count($single_product);
     if( $product_number > 0 ):
         

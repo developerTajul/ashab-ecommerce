@@ -28,7 +28,15 @@ if( isset( $_POST['checkout_submit']) ){
     $user_id        = $_SESSION['user_id'];
     $total_price    = $cart_total;
 
-    $result = mysqli_query($con, "INSERT INTO product_order (user_id, address, city, post_code, payment_type, total_price) VALUES('$user_id', '$address', '$city', '$post_code', '$payment_type', '$total_price')");
+    $payment_status = 'pending';
+    if( $payment_type == 'cod' ){
+        $payment_status = 'success';
+    }
+
+    $order_status = '1';
+
+
+    $result = mysqli_query($con, "INSERT INTO product_order (user_id, address, city, post_code, payment_type, total_price, payment_status) VALUES('$user_id', '$address', '$city', '$post_code', '$payment_type', '$total_price', '$payment_status')");
 
     if( $result ){
         

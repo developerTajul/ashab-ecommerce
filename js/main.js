@@ -628,3 +628,12 @@ function manage_cart(pid, type){
     });
  
 }    
+
+/**
+ * Order
+ */
+function sort_product_drop( cat_id ){
+    var sort_product = jQuery('select[name="product_sorting"]').val();
+    window.location.href="http://localhost/asbab/categories.php?cat_id="+cat_id+"&sort="+sort_product;
+
+}

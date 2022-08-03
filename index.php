@@ -73,7 +73,7 @@ require_once('header.php');
                 <div class="row product-list_area mt--30">
                     <!-- Start Single Category -->
                     <?php 
-                    $latest_products = get_products($con, 'DESC', '8');
+                    $latest_products = get_products($con, '', '8');
                     foreach( $latest_products as $product ): ?>
                     <div class="col-xl-3 col-md-4">
                         <div class="category">

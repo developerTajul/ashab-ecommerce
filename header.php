@@ -127,8 +127,8 @@ $totalProducts = $obj->totalProduct();
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="search__inner">
-                                <form action="#" method="get">
-                                    <input placeholder="Search here... " type="text">
+                                <form action="search.php" method="get">
+                                    <input placeholder="Search here... " type="text" name="s">
                                     <button type="submit"></button>
                                 </form>
                                 <div class="search__close__btn">
@@ -152,13 +152,16 @@ $totalProducts = $obj->totalProduct();
                         if( isset($_SESSION['cart']) ):
                             foreach( $_SESSION['cart'] as $key => $value ): 
                                 $productArray = get_products($con, '', '', $key);
+
                                 $product_id = $productArray[0]['product_id'];
                                 $name = $productArray[0]['name'];
                                 $thumbnail = $productArray[0]['thumbnail'];
                                 $regular_price = $productArray[0]['regular_price'];
                                 $sale_price = $productArray[0]['sale_price'];
-                                $qty = $value['qty'];
+                                $qty = (int)$value['qty'];
                                 $cart_total = $cart_total + ($qty*$sale_price);
+
+
                                 
                             ?>
                             <div class="shp__single__product">

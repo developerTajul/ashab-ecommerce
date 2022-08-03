@@ -11,11 +11,13 @@ require_once('header.php'); ?>
                                 <nav class="bradcaump-inner">
                                   <a class="breadcrumb-item" href="index.html">Home</a>
                                   <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
-                                  <span class="breadcrumb-item active">Products</span>
+                                  <span class="breadcrumb-item active">Search</span>
+                                  <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
+                                  <span class="breadcrumb-item active"><?php echo $_GET['s']; ?></span>
                                 </nav>
                             </div>
                         </div>
-                    </div>  xfsq
+                    </div>
                 </div>
             </div>
         </div>
@@ -26,68 +28,14 @@ require_once('header.php'); ?>
             <div class="container">
                 <div class="row">
                     <?php 
-                    if( isset($_GET['sort']) ){
-                        $sort = mysqli_real_escape_string($con, $_GET['sort']);
-                        if($sort == "high_price"){
-                            $sorted_order = " ORDER BY product.regular_price DESC";
-                        }
-                        
-                        if($sort == "low_price"){
-                            $sorted_order = " ORDER BY product.regular_price ASC";
-                        }
-
-                        if($sort == "old"){
-                            $sorted_order = " ORDER BY product.product_id ASC";
-                        }
-
-                        if($sort == "new"){
-                            $sorted_order = " ORDER BY product.product_id DESC";
-                        }
-                    }
-
-
-                    if( isset( $_GET['cat_id'] ) ):
-                    $current_category_id = mysqli_real_escape_string($con, $_GET['cat_id']); 
-                    
-                    if( isset($sorted_order) ){
-                        $sorted_order;
-                    }else{
-                        $sorted_order = "";
-                    }
-                    $cat_products = get_products($con, $sorted_order, '8', '', $current_category_id, '');
+                    if( isset( $_GET['s'] ) ):
+                    $current_category_id = mysqli_real_escape_string($con, trim($_GET['s'])); 
+                    $cat_products = get_products($con, '', '8', '', '', $current_category_id);
                     $product_number = count($cat_products);
                         if( $product_number > 0 ):
-
-
                         ?>
                             <div class="col-lg-12 order-lg-2 order-1">
                                 <div class="htc__product__rightidebar">
-                                    <div class="htc__grid__top">
-                                        <div class="htc__select__option">
-                                            <select class="ht__select" name="product_sorting" onchange="sort_product_drop(<?php echo $current_category_id; ?>)" id="sort_product_id">
-                                                <option value="">Defaut Sorting</option>
-                                                <option value="high_price">High to Low Price</option>
-                                                <option value="low_price">Low to High Price</option>
-                                                <option value="old">ASC Product</option>
-                                                <option value="new">DESC Product</option>
-                                            </select>
-                                            <select class="ht__select">
-                                                <option>Show by</option>
-                                                <option>Sort by popularity</option>
-                                                <option>Sort by average rating</option>
-                                                <option>Sort by newness</option>
-                                            </select>
-                                        </div>
-                                        <div class="ht__pro__qun">
-                                            <span>Showing 1-12 of 48 products</span>
-                                        </div>
-                                        <!-- Start List And Grid View -->
-                                        <ul class="nav view__mode" role="tablist">
-                                            <li role="presentation" class="grid-view"><a class="active" href="#grid-view" role="tab" data-toggle="tab"><i class="zmdi zmdi-grid"></i></a></li>
-                                            <li role="presentation" class="list-view"><a href="#list-view" role="tab" data-toggle="tab"><i class="zmdi zmdi-view-list"></i></a></li>
-                                        </ul>
-                                        <!-- End List And Grid View -->
-                                    </div>
                                     <!-- Start Product View -->
                                     <div class="shop__grid__view__wrap">
                                         <div role="tabpanel" id="grid-view" class="single-grid-view tab-pane fade show in active row">

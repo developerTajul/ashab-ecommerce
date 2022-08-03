@@ -51,7 +51,7 @@ require_once('header.php'); ?>
                                             $regular_price = $productArray[0]['regular_price'];
                                             $sale_price = $productArray[0]['sale_price'];
                                             
-                                            $qty = $value['qty'];
+                                            $qty = (int)$value['qty'];
                                             
                                             
                                         ?>
